@@ -32,4 +32,12 @@ python scripts/verify_deployment.py
 
 The direct suite covers authorization and hold outcomes, digest and attribution forgery, duplicate IDs and origins, malformed URLs and model output, unavailable sources, unauthorized execution, expired review, replay, and permissionless lapse.
 
-Deployment evidence will be updated after the corrected source is committed and deployed from the warnedwarn wallet. Demo records prove the contract workflow and source separation only; they do not claim independent publisher ownership or trusted authority.
+## Verified StudioNet deployment
+
+- Contract: [`0xA6F8…7cC8`](https://explorer-studio.genlayer.com/address/0xA6F8fc49688Ef188757b8D8A76bd5903fE877cC8)
+- Deployment: [`0xd5db…e2abc`](https://explorer-studio.genlayer.com/transactions/0xd5dbf40e6fde6c4f5614dbf648340d321b5c9958b8e7a5af0f50096c4d6e2abc), `FINALIZED / SUCCESS`
+- Proposal: [`0x2736…561b`](https://explorer-studio.genlayer.com/transactions/0x273640adc7f5b41d3ff4f1c0f07102114be50b40ca14d658e1be808a1d91561b), `FINALIZED / SUCCESS`
+- Validator review: [`0xe369…8735`](https://explorer-studio.genlayer.com/transactions/0xe369c0c5ae13edd66e4eab7a4dfdf22c1870571c59995ee5986eaf404c5d8735), `FINALIZED / SUCCESS`
+- Owner execution: [`0x6b05…ee9e`](https://explorer-studio.genlayer.com/transactions/0x6b05651cd84f03e97fcf480346e70d66aee582e04acc6c83ad3fa471a36dee9e), `FINALIZED / SUCCESS`
+
+The deployed source matches `contracts/contract.py` byte-for-byte at reviewed commit `b9ddc7c82716f7bddc36f38487e7a2dbe86ee790`. The warnedwarn wallet owns the smoke record, which reached `EXECUTED` after an `AUTHORIZED` decision with two supporting indexes and two stored digests. The two hosted records are reproducible demo fixtures and do not claim independent publisher ownership or trusted authority.

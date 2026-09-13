@@ -1,0 +1,52 @@
+{
+  "network": "StudioNet",
+  "contract": "0xA6F8fc49688Ef188757b8D8A76bd5903fE877cC8",
+  "sourceCommit": "b9ddc7c82716f7bddc36f38487e7a2dbe86ee790",
+  "wallet": "0x013A0745a3b2DbF87f4AB377266fCcb7e6eEC88A",
+  "proposalId": "RC-1789278045",
+  "sources": [
+    "https://raw.githubusercontent.com/warnedwarn/rollback-counsel/b9ddc7c82716f7bddc36f38487e7a2dbe86ee790/evidence/fixtures/release-v4.2.1.txt",
+    "https://cdn.jsdelivr.net/gh/warnedwarn/rollback-counsel@b9ddc7c82716f7bddc36f38487e7a2dbe86ee790/evidence/fixtures/incident-781.txt"
+  ],
+  "transactions": {
+    "propose": {
+      "hash": "0x273640adc7f5b41d3ff4f1c0f07102114be50b40ca14d658e1be808a1d91561b",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    "review": {
+      "hash": "0xe369c0c5ae13edd66e4eab7a4dfdf22c1870571c59995ee5986eaf404c5d8735",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    "execute": {
+      "hash": "0x6b05651cd84f03e97fcf480346e70d66aee582e04acc6c83ad3fa471a36dee9e",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    }
+  },
+  "state": {
+    "decision": "AUTHORIZED",
+    "digests": [
+      "bafacc9f101a1ada0b039e2cc2ef408e3fe45f2797d9c810beb9634c45ee513c",
+      "a038250e19af6682b029f1cb49daa7da2776f755aebc4d643482285b556db80e"
+    ],
+    "expires": 1789364446,
+    "id": "RC-1789278045",
+    "incident": "https://cdn.jsdelivr.net/gh/warnedwarn/rollback-counsel@b9ddc7c82716f7bddc36f38487e7a2dbe86ee790/evidence/fixtures/incident-781.txt",
+    "opposing_indexes": [],
+    "origins": [
+      "raw.githubusercontent.com",
+      "cdn.jsdelivr.net"
+    ],
+    "owner": "0x013A0745a3b2DbF87f4AB377266fCcb7e6eEC88A",
+    "release": "https://raw.githubusercontent.com/warnedwarn/rollback-counsel/b9ddc7c82716f7bddc36f38487e7a2dbe86ee790/evidence/fixtures/release-v4.2.1.txt",
+    "risk_codes": [],
+    "state": "EXECUTED",
+    "supporting_indexes": [
+      0,
+      1
+    ],
+    "target": "v4.1.9"
+  }
+}
