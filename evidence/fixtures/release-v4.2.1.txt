@@ -1,0 +1,8 @@
+DEMO RELEASE RECORD
+Application: Harbor Session Service
+Active release: v4.2.1
+Approved rollback target: v4.1.9
+Change under review: session migration path introduced in v4.2.1
+Compatibility finding: v4.1.9 remains schema-compatible with the retained database snapshot.
+Operator rule: if an independent incident record confirms the session regression, rollback to exactly v4.1.9 is authorized.
+This record is a reproducible technical fixture and does not claim independent publisher authority.

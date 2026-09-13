@@ -1,0 +1,7 @@
+DEMO INCIDENT RECORD 781
+Affected application: Harbor Session Service
+Observed release: v4.2.1
+Incident: authenticated sessions were invalidated after the v4.2.1 migration path activated.
+Recovery observation: a controlled restoration to v4.1.9 stopped the invalidation and preserved the retained database snapshot.
+Recommendation: authorize rollback from v4.2.1 to exactly v4.1.9.
+This record is a reproducible technical fixture and does not claim independent publisher authority.

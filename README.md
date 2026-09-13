@@ -1,24 +1,35 @@
 # RollbackCounsel
 
-> **CONTROL ROOM / ROLLBACK AUTHORIZATION** · Do not turn back a release until the incident record and release record agree.
+> **CONTROL ROOM / ROLLBACK AUTHORIZATION** · A release should not be reversed until its release record and an independent incident record support the same target.
 
-RollbackCounsel is a release-safety decision gate. A rollback is not treated as an ordinary button click: it is a proposed move from one specific release to a named target version, justified against a public release note and an independent incident record.
+RollbackCounsel is a source-bound GenLayer authorization primitive for software rollback decisions. The owner freezes one active release record, one incident record on a distinct HTTPS origin, an exact target version, and an expiry window. Validators fetch both records rather than trusting caller summaries.
 
-## Console state machine
+## Consensus record
 
-`PROPOSED → AUTHORIZED | HOLD`, then `EXECUTED` by the release owner, or `LAPSED` permissionlessly after expiry.
+The leader proposes only bounded fields: `AUTHORIZED` or `HOLD`, closed-set risk codes, and a complete partition of source indexes into supporting and opposing evidence. Every validator refetches both records, recomputes ordered SHA-256 response-body digests, checks the candidate shape, and performs a semantic check against the exact target. Free-form rationale is never stored as validator-approved state.
 
-`propose_rollback` freezes the target version and evidence locations. `review_rollback` has GenLayer validators fetch both records and decide whether the rollback is justified, retaining a bounded list of risks. An authorization does not execute itself: only the original release owner may use `execute_rollback`.
+`AUTHORIZED` requires both sources to support the target with no risk code. A hold must identify at least one opposing source and one of `VERSION_MISMATCH`, `INCIDENT_UNCONFIRMED`, `ROLLBACK_UNSUPPORTED`, `RECOVERY_RISK`, or `CONFLICTING_RECORDS`.
 
-## Console interlocks
+## Lifecycle and authority
 
-The contract rejects duplicate proposals, repeated evidence hosts, expired reviews, malformed URLs, unauthorized execution, and lapsed-state replay. Validators compare the exact stored decision and risk list rather than trusting leader-only output.
+`PROPOSED → AUTHORIZED → EXECUTED`
 
-## Operator checks
+`PROPOSED → HOLD`
+
+Any non-final proposal can become `LAPSED` permissionlessly after its stored expiry. Authorization never executes itself: only the original owner can execute an authorized rollback, and authorization cannot be used after expiry.
+
+## Deterministic guards
+
+The contract canonicalizes proposal IDs, rejects duplicates, accepts only parsed HTTPS sources, blocks credentials, fragments, invalid ports, and decoded path traversal, and requires two distinct normalized origins. The decision, risk codes, source attribution, and ordered digests remain readable through `get_rollback`.
+
+## Verification
 
 ```bash
-PYTHONUTF8=1 genvm-lint contracts/contract.py
+genvm-lint contracts/contract.py
 python -m pytest -q
+python scripts/verify_deployment.py
 ```
 
-StudioNet: [`0x1b9C51FBe50FfA3fe6496f4a61CC50Abc759249F`](https://explorer-studio.genlayer.com/address/0x1b9C51FBe50FfA3fe6496f4a61CC50Abc759249F)
+The direct suite covers authorization and hold outcomes, digest and attribution forgery, duplicate IDs and origins, malformed URLs and model output, unavailable sources, unauthorized execution, expired review, replay, and permissionless lapse.
+
+Deployment evidence will be updated after the corrected source is committed and deployed from the warnedwarn wallet. Demo records prove the contract workflow and source separation only; they do not claim independent publisher ownership or trusted authority.
